@@ -6,12 +6,16 @@ import time
 import spotify_token as st
 import evdev
 import argparse
+import os
 
 def setup():
-    parser = argparse.ArgumentParser()
+    ''' parser = argparse.ArgumentParser()
     parser.add_argument('username', help='Spotify username')
     parser.add_argument('password', help='password')
-    return parser.parse_args()
+    return parser.parse_args()'''
+    user = os.environ['SPOTIFY_USER']
+    password = os.environ['SPOTIFY_PASS']
+    return (user,password)
 
 def access_token(username, password):
     try:
@@ -68,7 +72,7 @@ def key_controller(sp):
 
 def main():
     args = setup()
-    token = access_token(args.username, args.password)
+    token = access_token(args[0], args[1])
     sp = spotipy.Spotify(auth=token)
     key_controller(sp)
 
