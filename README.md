@@ -17,3 +17,5 @@
 First you need to start an instance of spotify. Then you run the program with the following command:
 
         python3 spotiRemote.py <username> <password>
+
+## Test
