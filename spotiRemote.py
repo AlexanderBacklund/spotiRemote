@@ -5,7 +5,7 @@ import spotipy.util as util
 import time
 import spotify_token as st
 import evdev
-import argparse
+#import argparse
 import os
 
 def setup():
@@ -15,14 +15,15 @@ def setup():
     return parser.parse_args()'''
     user = os.environ['SPOTIFY_USER']
     password = os.environ['SPOTIFY_PASS']
-    return (user,password)
+    return user,password
 
 def access_token(username, password):
-    try:
-        data = st.start_session(username, password)
-    except Exception as e:
-        print("did not connect to spotify try to log in again")
-        return
+    #try:
+    data = st.start_session(username, password)
+    #except Exception as e:
+    #    print(e)
+    #    print("did not connect to spotify try to log in again")
+    #    return
     token = data[0]
     expiration_date = data[1]
     return token
@@ -71,8 +72,9 @@ def key_controller(sp):
                 play_pause(sp)
 
 def main():
-    args = setup()
-    token = access_token(args[0], args[1])
+    username, password = setup()
+    print(username)
+    token = access_token(username, password)
     sp = spotipy.Spotify(auth=token)
     key_controller(sp)
 
