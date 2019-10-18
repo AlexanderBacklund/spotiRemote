@@ -2,12 +2,12 @@
 
 ## Prerequisite
  - Python3
- - spotify
+ - Spotipy
  
         pip3 install spotipy
         pip install git+https://github.com/plamere/spotipy.git --upgrade
 
- - spotifyToken
+ - SpotifyToken
         
         pip3 install spotify_token   
 
